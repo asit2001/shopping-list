@@ -143,3 +143,16 @@ li{
     bottom: 0;
     width: 100%;
 }
+@media screen and (max-width:600px) {
+    .container,.overlay{
+        width: 98%;
+    }
+}
+@media screen and (max-width:350px) {
+    input{
+        min-width: auto;
+    }
+    .input-items{
+        width: 100%;
+    }
+}
