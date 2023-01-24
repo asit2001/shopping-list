@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shopping list</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="heading">Shopping List</h1>
+      <div class="input-div">
+        <span class="material-symbols-outlined"> search </span>
+        <input type="text" name="search" id="search" />
+      </div>
+      <div class="contents">
+        <button class="addBtn" id="addBtn">+ Add</button>
+        <ul class="list"></ul>
+        <div class="total">
+          <li style="border: none">
+            <span>Total Price :</span>
+            <span id="totalPrice">0</span>
+          </li>
+        </div>
+      </div>
+    </main>
+    <form class="overlay">
+      <div style="width: 100%; text-align: end">
+        <span id="close" style="padding: 10px; font-size: 2rem; cursor: pointer"
+          >&times;</span
+        >
+      </div>
+      <h1 id="heading" class="heading">Add To List</h1>
+      <div class="input-items">
+        <label for="name">Item Name</label>
+        <input type="text" name="name" id="name" required autocomplete="off" />
+        <label for="price">Item Price</label>
+        <input type="number" name="price" id="price" required />
+        <label for="date">Shopping Date</label>
+        <input type="date" name="date" id="date" />
+      </div>
+      <button id="addItemBtn" type="submit" class="btn">
+        Add Item
+      </button>
+      <button
+        id="updateItemBtn"
+        type="submit"
+        class="btn"
+        style="display: none"
+      >
+        Update Item
+      </button>
+    </form>
+    <script src="js/main.js"></script>
+  </body>
+</html>
