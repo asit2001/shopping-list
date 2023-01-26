@@ -175,7 +175,7 @@ function ToObject() {
 search.addEventListener("keyup", () => {
     document.querySelectorAll(".li-item").forEach((el) => {
         var _a;
-        if ((_a = el.textContent) === null || _a === void 0 ? void 0 : _a.includes(search.value)) {
+        if ((_a = el.textContent) === null || _a === void 0 ? void 0 : _a.toLocaleLowerCase().includes(search.value.toLocaleLowerCase())) {
             el.style.display = "";
         }
         else {

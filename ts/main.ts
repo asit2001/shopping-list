@@ -158,6 +158,7 @@ updateItemBtn.addEventListener("click", (e) => {
   (<any>window).DateEl.textContent = obj.date;
   (<any>window).PriceEl.textContent = obj.price;
   (<any>window).hidden.textContent = obj.exp;
+  
   updateItemBtn.style.display = "none";
   addItemBtn.style.display = "";
   setToLocalStorage();
@@ -199,7 +200,7 @@ function ToObject() {
 
 search.addEventListener("keyup", () => {
   document.querySelectorAll<HTMLLIElement>(".li-item").forEach((el) => {
-    if (el.textContent?.includes(search.value)) {
+    if (el.textContent?.toLocaleLowerCase().includes(search.value.toLocaleLowerCase())) {
       el.style.display = "";
     } else {
       el.style.display = "none";
