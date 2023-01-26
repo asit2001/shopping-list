@@ -11,9 +11,9 @@ let addItemBtn = document.getElementById("addItemBtn")! as HTMLButtonElement;
 let closeBtn = document.getElementById("close")! as HTMLSpanElement;
 let updateItemBtn = document.getElementById(
   "updateItemBtn"
-)! as HTMLButtonElement;
-let heading = document.getElementById("heading")! as HTMLHeadingElement;
-interface Obj {
+  )! as HTMLButtonElement;
+  let heading = document.getElementById("heading")! as HTMLHeadingElement;
+  interface Obj {
   name: string;
   price: number;
   date: string;
@@ -22,6 +22,9 @@ interface Obj {
 interface String {
   toCamelCase(): String;
 }
+
+
+let now = new Date();
 
 String.prototype.toCamelCase = function(){
   let str =  this.split(" ").reduce((preVal:String,val:String)=>{
@@ -47,6 +50,8 @@ function showOverlay() {
   container.style.display = "none";
   overlay.style.display = "flex";
   date.min = new Date().toISOString().split("T")[0];
+  // Default date value tomorrow
+  date.value = new Date(now.setDate(now.getDate() + 1)).toISOString().split("T")[0]
 }
 function hideOverLay() {
   container.style.display = "flex";
@@ -185,7 +190,6 @@ function ToObject() {
       numeric: "auto",
     }).format(diffDays, "day");
   }
-  let now = new Date();
   let obj: Obj = {
     name: Name.value.toCamelCase().toString(),
     price: Number(price.value),

@@ -12,6 +12,7 @@ let addItemBtn = document.getElementById("addItemBtn");
 let closeBtn = document.getElementById("close");
 let updateItemBtn = document.getElementById("updateItemBtn");
 let heading = document.getElementById("heading");
+let now = new Date();
 String.prototype.toCamelCase = function () {
     let str = this.split(" ").reduce((preVal, val) => {
         return preVal + " " + val.charAt(0).toUpperCase() + val.substring(1);
@@ -35,6 +36,7 @@ function showOverlay() {
     container.style.display = "none";
     overlay.style.display = "flex";
     date.min = new Date().toISOString().split("T")[0];
+    date.value = new Date(now.setDate(now.getDate() + 1)).toISOString().split("T")[0];
 }
 function hideOverLay() {
     var _a;
@@ -162,7 +164,6 @@ function ToObject() {
             numeric: "auto",
         }).format(diffDays, "day");
     }
-    let now = new Date();
     let obj = {
         name: Name.value.toCamelCase().toString(),
         price: Number(price.value),
