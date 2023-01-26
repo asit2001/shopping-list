@@ -51,6 +51,7 @@ function showOverlay() {
 function hideOverLay() {
   container.style.display = "flex";
   overlay.style.display = "none";
+  document.querySelector(".editing")?.classList.remove("editing");
 }
 addBtn.addEventListener("click", showOverlay);
 
@@ -75,15 +76,12 @@ function removeEl() {
 // implements later
 function editFun() {
   // @ts-ignore
-  let parent = this.parentElement.parentElement.children;
-  (<any>window).NameEl = parent[0].children[1];
-  (<any>window).DateEl = parent[0].children[2];
-  (<any>window).hidden = parent[0].children[3];
-  (<any>window).PriceEl = parent[1];
+  let parent:HTMLElement = this.parentElement.parentElement;
+  parent.classList.add("editing");
   showOverlay();
-  Name.value = parent[0].children[1].textContent;
-  price.value = parent[1].textContent.replace(/^\D+/g, "");
-  date.value = parent[0].children[3].textContent;
+  Name.value = parent.children[0].children[1].textContent!;
+  price.value = parent.children[1]?.textContent?.replace(/^\D+/g, "")!;
+  date.value = parent.children[0].children[3].textContent!;
   updateItemBtn.style.display = "";
   addItemBtn.style.display = "none";
   heading.textContent = "Update List";
@@ -154,11 +152,11 @@ updateItemBtn.addEventListener("click", (e) => {
     return;
   }
   let obj = ToObject();
-  (<any>window).NameEl.textContent = obj.name;
-  (<any>window).DateEl.textContent = obj.date;
-  (<any>window).PriceEl.textContent = obj.price;
-  (<any>window).hidden.textContent = obj.exp;
-  
+  let editedList = document.querySelector(".editing")! as HTMLLIElement;
+  editedList.children[0].children[1].textContent = obj.name;
+  editedList.children[0].children[2].textContent = obj.date;
+  editedList.children[0].children[3].textContent = obj.exp;
+  editedList.children[1].textContent = obj.price.toString();
   updateItemBtn.style.display = "none";
   addItemBtn.style.display = "";
   setToLocalStorage();
@@ -166,6 +164,8 @@ updateItemBtn.addEventListener("click", (e) => {
   heading.textContent = "Add To List";
   document.forms[0].reset();
 });
+
+// convert all list element's value to object
 function ToObject() {
   let shoppingDate: string;
 

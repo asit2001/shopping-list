@@ -37,8 +37,10 @@ function showOverlay() {
     date.min = new Date().toISOString().split("T")[0];
 }
 function hideOverLay() {
+    var _a;
     container.style.display = "flex";
     overlay.style.display = "none";
+    (_a = document.querySelector(".editing")) === null || _a === void 0 ? void 0 : _a.classList.remove("editing");
 }
 addBtn.addEventListener("click", showOverlay);
 closeBtn.addEventListener("click", hideOverLay);
@@ -56,15 +58,13 @@ function removeEl() {
     setToLocalStorage();
 }
 function editFun() {
-    let parent = this.parentElement.parentElement.children;
-    window.NameEl = parent[0].children[1];
-    window.DateEl = parent[0].children[2];
-    window.hidden = parent[0].children[3];
-    window.PriceEl = parent[1];
+    var _a, _b;
+    let parent = this.parentElement.parentElement;
+    parent.classList.add("editing");
     showOverlay();
-    Name.value = parent[0].children[1].textContent;
-    price.value = parent[1].textContent.replace(/^\D+/g, "");
-    date.value = parent[0].children[3].textContent;
+    Name.value = parent.children[0].children[1].textContent;
+    price.value = (_b = (_a = parent.children[1]) === null || _a === void 0 ? void 0 : _a.textContent) === null || _b === void 0 ? void 0 : _b.replace(/^\D+/g, "");
+    date.value = parent.children[0].children[3].textContent;
     updateItemBtn.style.display = "";
     addItemBtn.style.display = "none";
     heading.textContent = "Update List";
@@ -132,10 +132,11 @@ updateItemBtn.addEventListener("click", (e) => {
         return;
     }
     let obj = ToObject();
-    window.NameEl.textContent = obj.name;
-    window.DateEl.textContent = obj.date;
-    window.PriceEl.textContent = obj.price;
-    window.hidden.textContent = obj.exp;
+    let editedList = document.querySelector(".editing");
+    editedList.children[0].children[1].textContent = obj.name;
+    editedList.children[0].children[2].textContent = obj.date;
+    editedList.children[0].children[3].textContent = obj.exp;
+    editedList.children[1].textContent = obj.price.toString();
     updateItemBtn.style.display = "none";
     addItemBtn.style.display = "";
     setToLocalStorage();
