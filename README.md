@@ -31,7 +31,7 @@ npx http-server
 
 ## License
 
-The Password Generator is licensed under the terms of the MIT Open Source
+The Shopping List is licensed under the terms of the MIT Open Source
 license and is available for free.
 
 ## Links
